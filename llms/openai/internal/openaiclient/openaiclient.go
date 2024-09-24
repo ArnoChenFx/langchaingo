@@ -99,7 +99,11 @@ type EmbeddingRequest struct {
 // CreateEmbedding creates embeddings.
 func (c *Client) CreateEmbedding(ctx context.Context, r *EmbeddingRequest) ([][]float32, error) {
 	if r.Model == "" {
-		r.Model = defaultEmbeddingModel
+		if c.embeddingsModel != "" {
+			r.Model = c.embeddingsModel
+		} else {
+			r.Model = defaultEmbeddingModel
+		}
 	}
 
 	resp, err := c.createEmbedding(ctx, &embeddingPayload{
