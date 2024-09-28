@@ -16,6 +16,7 @@ const (
 type embeddingPayload struct {
 	Model string   `json:"model"`
 	Input []string `json:"input"`
+	Dimensions int `json:"dimensions"`
 }
 
 type embeddingResponsePayload struct {
